@@ -1,0 +1,30 @@
+package JavaLabREST.camera.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+import java.util.UUID;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Data
+public class GetBrandsResponse {
+    // Czyli piszemy kod który tylko zwraca liste marek aparatów po samej nazwie i nic wiecej.
+    // Dopiero jak chcemy poczytac wiecej o jednej marce to zwracamy wiekszy pojedynczy obiekt
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    @Data
+    public static class Brand {
+        private UUID id;
+
+        private String name;
+    }
+
+    private List<Brand> brands;
+
+}
