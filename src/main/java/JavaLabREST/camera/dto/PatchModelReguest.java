@@ -18,5 +18,3 @@ public class PatchModelReguest {
     private Integer announceYear;
 
 }
-
-//TODO: napisac dodawanie kategorii do wczesniejszego kodu i zobaczyc czy dziala
