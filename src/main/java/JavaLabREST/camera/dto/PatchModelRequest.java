@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Data
-public class PatchModelReguest {
+public class PatchModelRequest {
 
     private String name;
 

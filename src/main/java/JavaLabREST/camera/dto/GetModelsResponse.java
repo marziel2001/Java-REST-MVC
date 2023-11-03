@@ -14,6 +14,10 @@ import java.util.UUID;
 @Data
 public class GetModelsResponse {
 
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    @Data
     public static class Model {
 
         private UUID id;

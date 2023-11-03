@@ -41,7 +41,7 @@ public interface ModelController {
             @PathVariable("Id")
             UUID id,
             @RequestBody
-            PatchModelReguest request
+            PatchModelRequest request
     );
 
     @DeleteMapping("/api/models/{id}")

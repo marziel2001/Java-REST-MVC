@@ -13,8 +13,6 @@ import java.util.UUID;
 @Builder
 @Data
 public class GetBrandsResponse {
-    // Czyli piszemy kod który tylko zwraca liste marek aparatów po samej nazwie i nic wiecej.
-    // Dopiero jak chcemy poczytac wiecej o jednej marce to zwracamy wiekszy pojedynczy obiekt
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder

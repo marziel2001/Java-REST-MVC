@@ -8,7 +8,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Data
-
 public class PutModelRequest {
 
     private String name;
