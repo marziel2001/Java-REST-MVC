@@ -92,16 +92,24 @@ Content-Type: application/json
 
 
 
-
-
 ### Delete brand
 DELETE http://localhost:8080/api/brands/91d92bfc-a095-498d-926d-d7199ae2294f
+###
+DELETE http://localhost:8080/api/brands/94c2b18d-9218-476e-8d66-5a2543ee6068
 
 ### Delete model
 DELETE http://localhost:8080/api/models/99be6917-1f24-4a0e-b5b4-377cedc24ce5
 
 
+### Get brands models
+GET http://localhost:8080/api/brands/94c2b18d-9218-476e-8d66-5a2543ee6068/models
 
+### Delete model
+DELETE http://localhost:8080/api/models/99be6917-1f24-4a0e-b5b4-377cedc24ce5
+### Delete model
+DELETE http://localhost:8080/api/models/8d11bde4-a1c6-434d-b799-2e1ed67604d4
+### Delete model
+DELETE http://localhost:8080/api/models/f4f43786-7768-46cf-bdd9-50495b007821
 
 
 

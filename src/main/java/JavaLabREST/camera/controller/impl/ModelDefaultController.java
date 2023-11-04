@@ -5,6 +5,8 @@ import JavaLabREST.camera.dto.GetModelResponse;
 import JavaLabREST.camera.dto.GetModelsResponse;
 import JavaLabREST.camera.dto.PatchModelRequest;
 import JavaLabREST.camera.dto.PutModelRequest;
+import JavaLabREST.camera.entity.Brand;
+import JavaLabREST.camera.entity.Model;
 import JavaLabREST.camera.function.ModelToResponseFunction;
 import JavaLabREST.camera.function.ModelsToResponseFunction;
 import JavaLabREST.camera.function.PutRequestToModelFunction;
@@ -16,6 +18,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -50,7 +54,14 @@ public class ModelDefaultController implements ModelController {
 
     @Override
     public GetModelsResponse getModels() {
-        return modelsToResponse.apply(service.listAll());
+
+        List<Model> Models = service.listAll();
+
+        if(Models.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        } else {
+            return modelsToResponse.apply(Models);
+        }
     }
 
     @Override

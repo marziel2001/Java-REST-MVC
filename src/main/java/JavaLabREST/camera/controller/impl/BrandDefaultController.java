@@ -5,6 +5,8 @@ import JavaLabREST.camera.dto.GetBrandResponse;
 import JavaLabREST.camera.dto.GetBrandsResponse;
 import JavaLabREST.camera.dto.PatchBrandRequest;
 import JavaLabREST.camera.dto.PutBrandRequest;
+import JavaLabREST.camera.entity.Brand;
+import JavaLabREST.camera.entity.Model;
 import JavaLabREST.camera.function.BrandToResponseFunction;
 import JavaLabREST.camera.function.BrandsToResponseFunction;
 import JavaLabREST.camera.function.PutRequestToBrandFunction;
@@ -15,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -47,7 +50,15 @@ public class BrandDefaultController implements BrandController {
 
     @Override
     public GetBrandsResponse getBrands() {
-        return brandsToResponse.apply(service.listAll());
+
+        List<Brand> Brands = service.listAll();
+
+        if(Brands.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        }
+        else {
+            return brandsToResponse.apply(service.listAll());
+        }
     }
 
     @Override
