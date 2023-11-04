@@ -38,6 +38,7 @@ public class ApplicationCommand implements CommandLineRunner {
                 "get_brands - lists all brands\n" +
                 "get_models - lists all models from all brands\n" +
                 "delete_model\n" +
+                "delete_brand\n" +
                 "add_model - lets create new model under the existing brand\n" +
                 "add_brand - lets create new brand\n" +
                 "quit - to quit the app\n"
@@ -63,6 +64,13 @@ public class ApplicationCommand implements CommandLineRunner {
                     modelService.deleteModel(brandName, modelName);
 
                     modelService.listAll().forEach(System.out::println);
+                }
+                case "delete_brand" -> {
+                    System.out.println("please provide brand name");
+                    String brandName = scanner.nextLine();
+                    System.out.println("brand name:" + brandName);
+
+                    service.delete(brandName);
                 }
                 case "add_model" -> {
                     System.out.println("please provide uuid:");

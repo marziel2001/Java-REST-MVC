@@ -41,7 +41,7 @@ public interface ModelController {
     @PatchMapping("/api/models/{id}")
     @ResponseStatus(HttpStatus.OK)
         void patchModel(
-            @PathVariable("Id")
+            @PathVariable("id")
             UUID id,
             @RequestBody
             PatchModelRequest request

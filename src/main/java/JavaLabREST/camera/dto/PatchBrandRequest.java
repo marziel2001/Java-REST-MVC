@@ -22,5 +22,4 @@ public class PatchBrandRequest {
 
     private Double brandValueDollars;
 
-
 }

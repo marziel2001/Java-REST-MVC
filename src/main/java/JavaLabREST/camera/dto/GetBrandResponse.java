@@ -15,7 +15,7 @@ import java.util.UUID;
 @Builder
 @Data
 public class GetBrandResponse {
-    //szczegoly na temat jednej firmy
+
     private UUID uuid;
 
     private String name;
@@ -27,4 +27,5 @@ public class GetBrandResponse {
     private Double brandValueDollars;
 
     private List<Model> models;
+
 }

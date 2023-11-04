@@ -1,6 +1,7 @@
 package JavaLabREST.camera.service.impl;
 
 import JavaLabREST.camera.entity.Brand;
+import JavaLabREST.camera.entity.Model;
 import JavaLabREST.camera.repository.BrandRepository;
 import JavaLabREST.camera.repository.ModelRepository;
 import JavaLabREST.camera.service.api.BrandService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class BrandDefaultService implements BrandService {
@@ -28,9 +30,45 @@ public class BrandDefaultService implements BrandService {
         return repository.findAll();
     }
 
+    @Override
+    public Optional<Brand> find(UUID id) {
+        return repository.findById(id);
+    }
+
 
     @Override
     public void create(Brand brand) {
         repository.save(brand);
+    }
+
+    @Override
+    public void delete(UUID id) {
+        repository.findById(id).ifPresent(repository::delete);
+    }
+
+    @Override
+    public void delete(String name) {
+        repository.findAllByName(name).ifPresentOrElse(repository::delete, () -> System.out.println("not found"));
+    }
+
+    @Override
+    public void updateBrand(Brand newBrand) {
+        UUID id = newBrand.getUuid();
+
+        Optional<Brand> tmpOldBrand = repository.findById(id);
+
+        if(tmpOldBrand.isPresent()) {
+            Brand oldBrand = tmpOldBrand.get();
+
+            oldBrand.setName(newBrand.getName());
+            oldBrand.setYearOfEst(newBrand.getYearOfEst());
+            oldBrand.setCountry(newBrand.getCountry());
+            oldBrand.setBrandValueDollars(newBrand.getBrandValueDollars());
+
+            repository.save(oldBrand);
+
+        } else {
+            System.out.println("Brand not found");
+        }
     }
 }

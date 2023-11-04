@@ -18,9 +18,11 @@ public class GetBrandsResponse {
     @Builder
     @Data
     public static class Brand {
+
         private UUID id;
 
         private String name;
+
     }
 
     private List<Brand> brands;

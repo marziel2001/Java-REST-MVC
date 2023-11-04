@@ -31,4 +31,5 @@ public class GetModelResponse {
     private Double price;
 
     private Integer announceDate;
+
 }

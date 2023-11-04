@@ -13,6 +13,7 @@ public class PutRequestToBrandFunction implements BiFunction<UUID, PutBrandReque
     public Brand apply(UUID id, PutBrandRequest request) {
         return Brand.builder()
             .uuid(id)
+            .name(request.getName())
             .brandValueDollars(request.getBrandValueDollars())
             .country(request.getCountry())
             .yearOfEst(request.getYearOfEst())

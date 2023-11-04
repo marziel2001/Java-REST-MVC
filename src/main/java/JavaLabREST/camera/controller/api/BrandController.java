@@ -16,7 +16,7 @@ public interface BrandController {
     @GetMapping("api/brands/{id}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    GetBrandsResponse getBrand(
+    GetBrandResponse getBrand(
         @PathVariable("id")
         UUID id
     );
@@ -40,7 +40,7 @@ public interface BrandController {
     @PatchMapping("/api/brands/{id}")
     @ResponseStatus(HttpStatus.OK)
     void patchBrand(
-        @PathVariable("Id")
+        @PathVariable("id")
         UUID id,
         @RequestBody
         PatchBrandRequest request

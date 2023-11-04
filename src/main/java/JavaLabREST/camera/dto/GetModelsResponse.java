@@ -27,4 +27,5 @@ public class GetModelsResponse {
     }
 
     private List<Model> models;
+
 }

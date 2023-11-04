@@ -102,7 +102,7 @@ public class ModelDefaultService implements ModelService {
     public void updateModel(Model newModel) {
         UUID id = newModel.getUuid();
 
-        Optional<Model> tmpOldModel = repository.findByUuid(id);
+        Optional<Model> tmpOldModel = repository.findById(id);
 
         if(tmpOldModel.isPresent()) {
             Model oldModel = tmpOldModel.get();

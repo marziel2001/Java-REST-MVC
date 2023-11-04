@@ -9,6 +9,7 @@ import JavaLabREST.camera.function.ModelToResponseFunction;
 import JavaLabREST.camera.function.ModelsToResponseFunction;
 import JavaLabREST.camera.function.PutRequestToModelFunction;
 import JavaLabREST.camera.function.UpdateModelWithRequestFunction;
+import JavaLabREST.camera.service.api.BrandService;
 import JavaLabREST.camera.service.api.ModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import java.util.UUID;
 public class ModelDefaultController implements ModelController {
 
     private final ModelService service;
+    private final BrandService brandService;
 
     private final ModelsToResponseFunction modelsToResponse;
 
@@ -33,12 +35,13 @@ public class ModelDefaultController implements ModelController {
     @Autowired
     public ModelDefaultController(
         ModelService service,
-        ModelsToResponseFunction modelsToResponse,
+        BrandService brandService, ModelsToResponseFunction modelsToResponse,
         ModelToResponseFunction modelToResponse,
         PutRequestToModelFunction putRequestToModel,
         UpdateModelWithRequestFunction updateModelWithRequest
     ) {
         this.service = service;
+        this.brandService = brandService;
         this.modelsToResponse = modelsToResponse;
         this.modelToResponse = modelToResponse;
         this.putRequestToModel = putRequestToModel;
@@ -66,7 +69,13 @@ public class ModelDefaultController implements ModelController {
 
     @Override
     public void putModel(UUID id, PutModelRequest request) {
-        service.create(putRequestToModel.apply(id, request));
+        brandService.find(request.getBrand())
+            .ifPresentOrElse(
+                model -> service.create(putRequestToModel.apply(id, request)),
+                () -> {
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+                }
+            );
     }
 
     @Override
@@ -76,7 +85,8 @@ public class ModelDefaultController implements ModelController {
                 model -> service.updateModel(updateModelWithRequest.apply(model, request)),
                 () -> {
                     throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-                });
+                }
+            );
     }
 
     @Override

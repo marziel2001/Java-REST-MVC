@@ -15,6 +15,7 @@ public class UpdateBrandWithRequestFunction implements BiFunction<Brand, PatchBr
             .name(request.getName())
             .yearOfEst(request.getYearOfEst())
             .country(request.getCountry())
+            .brandValueDollars(request.getBrandValueDollars())
             .build();
     }
 }
