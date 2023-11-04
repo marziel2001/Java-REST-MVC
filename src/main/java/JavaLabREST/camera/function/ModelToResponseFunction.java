@@ -4,8 +4,10 @@ import JavaLabREST.camera.dto.GetModelResponse;
 import JavaLabREST.camera.entity.Model;
 import org.springframework.stereotype.Component;
 
+import java.util.function.Function;
+
 @Component
-public class ModelToResponseFunction {
+public class ModelToResponseFunction implements Function<Model, GetModelResponse> {
 
     public GetModelResponse apply(Model entity) {
         return GetModelResponse.builder()

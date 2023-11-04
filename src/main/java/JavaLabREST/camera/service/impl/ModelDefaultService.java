@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ModelDefaultService implements ModelService {
@@ -30,8 +31,24 @@ public class ModelDefaultService implements ModelService {
     }
 
     @Override
+    public Optional<Model> find(UUID id) {
+        return repository.findById(id);
+    }
+
+    @Override
     public List<Model> findAllByBrand(String name) {
         return repository.findAllByBrand_Name(name);
+    }
+
+    @Override
+    public Optional<List<Model>> findAllByBrand(UUID BrandId) {
+        return brandRepository.findById(BrandId)
+            .map(repository::findAllByBrand);
+    }
+
+    @Override
+    public Optional<Model> findById(UUID uuid) {
+        return repository.findByUuid(uuid);
     }
 
     @Override
@@ -69,6 +86,11 @@ public class ModelDefaultService implements ModelService {
         else {
             System.out.println("Brand does not exist in database");
         }
+    }
+
+    @Override
+    public void deleteModel(UUID uuid) {
+        repository.findById(uuid).ifPresent(repository::delete);
     }
 
     @Override

@@ -5,8 +5,10 @@ import JavaLabREST.camera.dto.PatchModelRequest;
 import JavaLabREST.camera.entity.Model;
 import org.springframework.stereotype.Component;
 
+import java.util.function.BiFunction;
+
 @Component
-public class UpdateModelWithRequestFunction {
+public class UpdateModelWithRequestFunction implements BiFunction<Model, PatchModelRequest, Model> {
 
     public Model apply(Model entity, PatchModelRequest request) {
         return Model.builder()

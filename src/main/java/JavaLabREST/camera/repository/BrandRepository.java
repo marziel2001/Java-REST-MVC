@@ -13,4 +13,5 @@ public interface BrandRepository extends JpaRepository<Brand, UUID> {
     Optional<Brand> findAllByName(String name);
 
     List<Brand> findAll();
+
 }

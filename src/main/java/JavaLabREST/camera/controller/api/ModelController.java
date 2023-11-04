@@ -16,7 +16,10 @@ public interface ModelController {
     @GetMapping("/api/models/{id}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    GetModelResponse getModel();
+    GetModelResponse getModel(
+        @PathVariable("id")
+        UUID id
+    );
 
     @GetMapping("api/brands/{brandId}/models")
     @ResponseStatus(HttpStatus.OK)
@@ -46,7 +49,7 @@ public interface ModelController {
 
     @DeleteMapping("/api/models/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deleteBrand(
+    void deleteModel(
         @PathVariable("id")
         UUID id
     );

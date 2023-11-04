@@ -7,9 +7,10 @@ import JavaLabREST.camera.entity.Model;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
+import java.util.function.BiFunction;
 
 @Component
-public class PutRequestToModelFunction {
+public class PutRequestToModelFunction implements BiFunction<UUID, PutModelRequest, Model> {
     public Model apply(UUID id, PutModelRequest request) {
         return Model.builder()
             .uuid(id)

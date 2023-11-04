@@ -5,9 +5,10 @@ import JavaLabREST.camera.entity.Brand;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
+import java.util.function.BiFunction;
 
 @Component
-public class PutRequestToBrandFunction {
+public class PutRequestToBrandFunction implements BiFunction<UUID, PutBrandRequest, Brand> {
 
     public Brand apply(UUID id, PutBrandRequest request) {
         return Brand.builder()

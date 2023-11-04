@@ -4,8 +4,10 @@ import JavaLabREST.camera.dto.GetBrandResponse;
 import JavaLabREST.camera.entity.Brand;
 import org.springframework.stereotype.Component;
 
+import java.util.function.Function;
+
 @Component
-public class BrandToResponseFunction {
+public class BrandToResponseFunction implements Function<Brand, GetBrandResponse> {
 
     public GetBrandResponse apply(Brand entity) {
         return GetBrandResponse.builder()
