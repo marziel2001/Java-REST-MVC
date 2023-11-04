@@ -97,4 +97,24 @@ public class ModelDefaultService implements ModelService {
     public void create(Model model) {
         repository.save(model);
     }
+
+    @Override
+    public void updateModel(Model newModel) {
+        UUID id = newModel.getUuid();
+
+        Optional<Model> tmpOldModel = repository.findByUuid(id);
+
+        if(tmpOldModel.isPresent()) {
+            Model oldModel = tmpOldModel.get();
+
+            oldModel.setName(newModel.getName());
+            oldModel.setPrice(newModel.getPrice());
+            oldModel.setAnnounceYear(newModel.getAnnounceYear());
+
+            repository.save(oldModel);
+
+        } else {
+            System.out.println("Model not found");
+        }
+    }
 }

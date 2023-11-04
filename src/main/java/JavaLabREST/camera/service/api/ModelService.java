@@ -27,4 +27,6 @@ public interface ModelService {
     void deleteModel(UUID uuid);
 
     void create(Model model);
+
+    void updateModel(Model newModel);
 }

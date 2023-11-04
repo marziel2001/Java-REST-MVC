@@ -57,7 +57,6 @@ public class ModelDefaultController implements ModelController {
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-
     @Override
     public GetModelsResponse getBrandsModels(UUID id) {
         return service.findAllByBrand(id)
@@ -72,7 +71,12 @@ public class ModelDefaultController implements ModelController {
 
     @Override
     public void patchModel(UUID id, PatchModelRequest request) {
-
+        service.find(id)
+            .ifPresentOrElse(
+                model -> service.updateModel(updateModelWithRequest.apply(model, request)),
+                () -> {
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+                });
     }
 
     @Override
