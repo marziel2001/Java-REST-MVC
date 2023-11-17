@@ -73,10 +73,6 @@ public class ApplicationCommand implements CommandLineRunner {
                     service.delete(brandName);
                 }
                 case "add_model" -> {
-                    System.out.println("please provide uuid:");
-                    String uuid = scanner.nextLine();
-                    System.out.println("uuid: " + uuid);
-
                     System.out.println("please provide brand name");
                     String brandName = scanner.nextLine();
                     System.out.println("brand: "+brandName);
@@ -97,7 +93,7 @@ public class ApplicationCommand implements CommandLineRunner {
 
                     modelService.addModelToBrand(brandName,
                         Model.builder()
-                        .uuid(UUID.fromString(uuid))
+                        .uuid(UUID.randomUUID())
                         .name(name)
                         .price(price)
                         .announceYear(year)
@@ -131,7 +127,7 @@ public class ApplicationCommand implements CommandLineRunner {
                     System.out.println("price:"+value);
 
                     service.create(Brand.builder()
-                        .uuid(UUID.fromString(uuid))
+                        .uuid(UUID.randomUUID())
                         .name(brandName)
                         .yearOfEst(year)
                         .country(country)
@@ -145,7 +141,3 @@ public class ApplicationCommand implements CommandLineRunner {
         }
     }
 }
-
-// example UUIDs:
-//  e6f6f3da-7986-468a-96c6-9c29649e3411
-//  8d3d10dc-f842-44cf-acce-86304603325c

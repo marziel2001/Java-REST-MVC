@@ -26,6 +26,4 @@ public class GetBrandResponse {
 
     private Double brandValueDollars;
 
-    private List<Model> models;
-
 }
